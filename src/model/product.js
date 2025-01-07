@@ -11,7 +11,7 @@ const productSchema = new Schema({
     product_description: String,
     product_price: {type: Number, required: true},
     product_quantity: {type: Number, required: true},
-    product_atributes: {type: Schema.Types.Mixed, required: true}
+    product_attributes: {type: Schema.Types.Mixed, required: true}
 }, {
     collection: COLLECTION_NAME,
     timestamps: true
@@ -22,7 +22,7 @@ const clothingSchema = new Schema({
     size: {type: String, required: true},
     color: {type: String, required: true}
 }, {
-    collection: COLLECTION_NAME,
+    collection: "clothes",
     timestamps: true
 })
 
@@ -31,7 +31,7 @@ const electronicsSchema = new Schema({
     model: {type: String, required: true},
     color: {type: String, required: true}
 }, {
-    collection: COLLECTION_NAME,
+    collection: "electronics",
     timestamps: true
 })
 
@@ -40,15 +40,15 @@ const furnitureSchema = new Schema({
     type: {type: String, required: true},
     color: {type: String, required: true}
 }, {
-    collection: COLLECTION_NAME,
+    collection: "furniture",
     timestamps: true
 })
 
 module.exports = {
-    Product: model(DOCUMENT_NAME, productSchema),
-    Clothing: model(DOCUMENT_NAME, clothingSchema),
-    Electronics: model(DOCUMENT_NAME, electronicsSchema),
-    Furniture: model(DOCUMENT_NAME, furnitureSchema)
+    product: model('Product', productSchema),
+    clothing: model('Clothing', clothingSchema),
+    electronics: model('Electronics', electronicsSchema),
+    furniture: model('Furniture', furnitureSchema)
 }
 
 

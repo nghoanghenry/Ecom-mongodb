@@ -1,4 +1,4 @@
-const { Product, Clothing, Electronics, Furniture } = require('../model/product')
+const { product, clothing, electronics, furniture } = require('../model/product')
 
 class ProductFactory {
     static async createProduct(type, payload) {
@@ -24,29 +24,29 @@ class Product {
         this.product_attributes = product_attributes
     }
 
-    async createProduct() {
-        return await Product.create(this)
+    async createProduct(product_id) {
+        return await product.create({...this, _id: product_id})
     }
 }
 
 class Clothing extends Product {
     async createProduct() {
-        const newClothing = await Clothing.create(this.product_attributes)
-        const newProduct = await super.createProduct()
+        const newClothing = await clothing.create(this.product_attributes)
+        const newProduct = await super.createProduct(newClothing._id)
     }
 }
 
 class Electronics extends Product {
     async createProduct() {
-        const newElectronics = await Electronics.create(this.product_attributes)
-        const newProduct = await super.createProduct()
+        const newElectronics = await electronics.create(this.product_attributes)
+        const newProduct = await super.createProduct(newElectronics._id)
     }
 }
 
 class Furniture extends Product {
     async createProduct() {
-        const newFurniture = await Furniture.create(this.product_attributes)
-        const newProduct = await super.createProduct()
+        const newFurniture = await furniture.create(this.product_attributes)
+        const newProduct = await super.createProduct(newFurniture._id)
     }
 }
 
